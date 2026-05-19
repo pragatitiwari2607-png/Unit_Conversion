@@ -1,14 +1,20 @@
+using FluentValidation;
+using FluentValidation.AspNetCore;
 using UnitConversionAPI.Middleware;
 using UnitConversionAPI.Services;
 using UnitConversionAPI.Services.Interfaces;
 using UnitConversionAPI.Strategies;
 using UnitConversionAPI.Strategies.Interfaces;
+using UnitConversionAPI.Validators;
 
 var builder = WebApplication.CreateBuilder(args);
 
 builder.Services.AddControllers();
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
+
+builder.Services.AddFluentValidationAutoValidation();
+builder.Services.AddValidatorsFromAssemblyContaining<ConversionRequestValidator>();
 
 builder.Services.AddScoped<IUnitConverter, LengthConverter>();
 builder.Services.AddScoped<IUnitConverter, TemperatureConverter>();

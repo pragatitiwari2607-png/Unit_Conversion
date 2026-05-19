@@ -7,10 +7,7 @@ public class ConversionService : IConversionService
 {
     private readonly IEnumerable<IUnitConverter> _converters;
 
-    public ConversionService(IEnumerable<IUnitConverter> converters)
-    {
-        _converters = converters;
-    }
+    public ConversionService(IEnumerable<IUnitConverter> converters) => _converters = converters;
 
     public double Convert(string category, string fromUnit, string toUnit, double value)
     {
